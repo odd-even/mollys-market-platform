@@ -507,42 +507,6 @@
         <div class="grid-2" id="factors"></div>
       </section>
 
-      <section class="section">
-        <h2>Edit experience vs design stability</h2>
-        <p class="sub">
-          Custom stack uses a CMS shaped around Molly’s content. Molly’s team updates
-          copy and photos; layout and brand rules stay as designed.
-          The tradeoff: big structural changes and new modules need a developer
-          with git access — not limited to Odd+Even.
-        </p>
-        <div class="grid-2">
-          <div class="card">
-            <h2>Editor can be customized</h2>
-            <p class="sub">Fixed builder UX vs fields labeled for Molly’s hours, FAQ, catering, seasonal notes.</p>
-            <div class="bars" data-chart='{"custom":95,"framer":45,"squarespace":40}'></div>
-          </div>
-          <div class="card">
-            <h2>Design stays stable when editing</h2>
-            <p class="sub">How hard it is for day-to-day edits to drift Molly’s live site off-brand.</p>
-            <div class="bars" data-chart='{"custom":95,"framer":55,"squarespace":40}'></div>
-          </div>
-          <div class="card">
-            <h2>Sweeping edits &amp; new modules</h2>
-            <p class="sub">Restructure pages, add sections, or invent new modules without a developer. This is where Squarespace and Framer win. On custom, anyone with git access can ship those changes.</p>
-            <div class="bars" data-chart='{"custom":25,"framer":90,"squarespace":95}'></div>
-          </div>
-          <div class="card">
-            <h2>Safe day-to-day content</h2>
-            <p class="sub">Hours, copy, photos, FAQ — Molly’s can do these on all three; custom keeps layout locked while they do.</p>
-            <div class="bars" data-chart='{"custom":90,"framer":65,"squarespace":95}'></div>
-          </div>
-          <div class="card">
-            <h2>AI agent changes</h2>
-            <p class="sub">Set up so an AI agent can ship site changes. Custom (git) and Framer both support this. Squarespace does not.</p>
-            <div class="bars" data-chart='{"custom":95,"framer":90,"squarespace":5}'></div>
-          </div>
-        </div>
-      </section>
     </div>
   </div>
 
@@ -550,7 +514,7 @@
     <div class="wrap">
       <section class="section">
         <h2>Who edits what</h2>
-        <p class="sub">After launch: Molly’s team vs a developer (git access on custom). Menu and checkout stay in ChowNow / Toast on all options.</p>
+        <p class="sub">After launch: Molly’s team vs a developer (git access on custom).</p>
         <div class="edit-table-wrap">
           <table>
             <thead>
@@ -570,7 +534,6 @@
               <tr><td>New section types</td><td>Limited</td><td>Developer recommended</td><td>Developer (git)</td></tr>
               <tr><td>Sweeping page restructure / new modules</td><td>Site break risk</td><td>Developer recommended</td><td>Developer (git)</td></tr>
               <tr><td>Changes via AI agent</td><td>Not supported</td><td>Yes</td><td>Yes (git)</td></tr>
-              <tr><td>Menu / prices / checkout</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td></tr>
             </tbody>
           </table>
         </div>
@@ -637,14 +600,6 @@
               <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Not supported</span></div>
               <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Yes</span></div>
               <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Yes (git)</span></div>
-            </div>
-          </div>
-          <div class="edit-item">
-            <h3>Menu / prices / checkout</h3>
-            <div class="edit-platforms">
-              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">ChowNow / Toast</span></div>
-              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">ChowNow / Toast</span></div>
-              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">ChowNow / Toast</span></div>
             </div>
           </div>
         </div>
@@ -718,8 +673,7 @@ const CRITERIA = [
   { name: "AI agent changes", detail: "Can set up so an AI agent makes site changes", custom: 95, framer: 90, squarespace: 5 },
   { name: "Custom edit experience", detail: "Editor tailored to Molly’s content (not a generic form)", custom: 95, framer: 45, squarespace: 40 },
   { name: "Design stays stable", detail: "Content changes without breaking the designed layout", custom: 95, framer: 55, squarespace: 40 },
-  { name: "ChowNow Order button", detail: "Add direct ordering from Molly’s marketing site", custom: 90, framer: 90, squarespace: 90 },
-  { name: "Speed to launch", detail: "Time to a live coming-soon / first site (same designer)", custom: 80, framer: 80, squarespace: 90 },
+  { name: "Speed to launch", detail: "Time to a live first site (same designer)", custom: 80, framer: 80, squarespace: 90 },
   { name: "Own the site long-term", detail: "Molly’s keeps the site if vendors change", custom: 100, framer: 45, squarespace: 35 },
 ];
 
@@ -788,10 +742,6 @@ document.getElementById("factors").innerHTML = CRITERIA.map((c) => `
     <div class="bars">${barsHTML(c)}</div>
   </div>
 `).join("");
-
-document.querySelectorAll("[data-chart]").forEach((el) => {
-  el.innerHTML = barsHTML(JSON.parse(el.getAttribute("data-chart")));
-});
 
 animateBars();
 </script>
