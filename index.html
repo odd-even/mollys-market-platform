@@ -268,25 +268,65 @@
   .factor .sub { margin-bottom: 14px; flex: 0 0 auto; }
   .factor .bars { margin-top: auto; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
+  .edit-list {
+    display: grid;
+    gap: 10px;
   }
-  th, td {
-    text-align: left;
-    padding: 11px 10px;
-    border-bottom: 1px solid var(--line);
-    vertical-align: top;
+  .edit-item {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
   }
-  th {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--muted);
+  .edit-item h3 {
+    font-size: 14px;
     font-weight: 700;
+    margin-bottom: 10px;
   }
-  td:first-child { font-weight: 600; width: 28%; }
+  .edit-platforms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .edit-platform {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+  .edit-platform .plat {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .edit-platform .plat.sq { color: var(--squarespace); }
+  .edit-platform .plat.fr { color: var(--framer); }
+  .edit-platform .plat.cu { color: var(--custom); }
+  .edit-platform .val {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.35;
+    word-break: break-word;
+  }
+  @media (max-width: 700px) {
+    .edit-platforms {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .edit-platform {
+      grid-template-columns: 110px 1fr;
+      align-items: start;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+    .edit-platform:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
 
   .pill {
     display: inline-block;
@@ -481,29 +521,87 @@
       <section class="section">
         <h2>Who edits what</h2>
         <p class="sub">After launch: Molly’s team vs a developer (git access on custom). Menu and checkout stay in ChowNow / Toast on all options.</p>
-        <div class="card" style="padding: 8px 12px 4px;">
-          <table>
-            <thead>
-              <tr>
-                <th>Change</th>
-                <th>Squarespace</th>
-                <th>Framer</th>
-                <th>Custom stack</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Hours, address, phone</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
-              <tr><td>Page copy / FAQ</td><td>Molly’s</td><td>Molly’s (pages)</td><td>Molly’s (CMS)</td></tr>
-              <tr><td>Swap photos</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
-              <tr><td>Coming-soon / newsletter</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
-              <tr><td>New seasonal story page</td><td>Molly’s (template)</td><td>Developer recommended</td><td>Molly’s if modeled; else developer</td></tr>
-              <tr><td>Layout, type, colors, motion</td><td>Mostly Molly’s (risky)</td><td>Developer recommended</td><td>Developer (git)</td></tr>
-              <tr><td>New section types</td><td>Limited</td><td>Developer recommended</td><td>Developer (git)</td></tr>
-              <tr><td>Sweeping page restructure / new modules</td><td>Molly’s</td><td>Molly’s (Framer)</td><td>Developer (git)</td></tr>
-              <tr><td>Changes via AI agent</td><td>Not supported</td><td>Yes</td><td>Yes (git)</td></tr>
-              <tr><td>Menu / prices / checkout</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td></tr>
-            </tbody>
-          </table>
+        <div class="edit-list">
+          <div class="edit-item">
+            <h3>Hours, address, phone</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Molly’s (CMS)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>Page copy / FAQ</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Molly’s (pages)</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Molly’s (CMS)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>Swap photos</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Molly’s (CMS)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>Coming-soon / newsletter</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Molly’s (CMS)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>New seasonal story page</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Molly’s (template)</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Developer recommended</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Molly’s if modeled; else developer</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>Layout, type, colors, motion</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Mostly Molly’s (risky)</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Developer recommended</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Developer (git)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>New section types</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Limited</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Developer recommended</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Developer (git)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>Sweeping page restructure / new modules</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Molly’s</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Molly’s (Framer)</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Developer (git)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>Changes via AI agent</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">Not supported</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">Yes</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">Yes (git)</span></div>
+            </div>
+          </div>
+          <div class="edit-item">
+            <h3>Menu / prices / checkout</h3>
+            <div class="edit-platforms">
+              <div class="edit-platform"><span class="plat sq">Squarespace</span><span class="val">ChowNow / Toast</span></div>
+              <div class="edit-platform"><span class="plat fr">Framer</span><span class="val">ChowNow / Toast</span></div>
+              <div class="edit-platform"><span class="plat cu">Custom</span><span class="val">ChowNow / Toast</span></div>
+            </div>
+          </div>
         </div>
       </section>
 
