@@ -268,8 +268,43 @@
   .factor .sub { margin-bottom: 14px; flex: 0 0 auto; }
   .factor .bars { margin-top: auto; }
 
+  .edit-table-wrap {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 8px 12px 4px;
+    overflow-x: auto;
+  }
+  .edit-table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .edit-table-wrap th,
+  .edit-table-wrap td {
+    text-align: left;
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .edit-table-wrap th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .edit-table-wrap td:first-child {
+    font-weight: 600;
+    width: 28%;
+  }
+  .edit-table-wrap tr:last-child td {
+    border-bottom: none;
+  }
+
   .edit-list {
-    display: grid;
+    display: none;
     gap: 10px;
   }
   .edit-item {
@@ -285,13 +320,21 @@
   }
   .edit-platforms {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
   .edit-platform {
     display: grid;
-    gap: 4px;
+    grid-template-columns: 110px 1fr;
+    align-items: start;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
     min-width: 0;
+  }
+  .edit-platform:first-child {
+    border-top: none;
+    padding-top: 0;
   }
   .edit-platform .plat {
     font-size: 10px;
@@ -311,21 +354,8 @@
     word-break: break-word;
   }
   @media (max-width: 700px) {
-    .edit-platforms {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-    .edit-platform {
-      grid-template-columns: 110px 1fr;
-      align-items: start;
-      gap: 8px;
-      padding-top: 8px;
-      border-top: 1px solid var(--line);
-    }
-    .edit-platform:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
+    .edit-table-wrap { display: none; }
+    .edit-list { display: grid; }
   }
 
   .pill {
@@ -521,6 +551,29 @@
       <section class="section">
         <h2>Who edits what</h2>
         <p class="sub">After launch: Molly’s team vs a developer (git access on custom). Menu and checkout stay in ChowNow / Toast on all options.</p>
+        <div class="edit-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Change</th>
+                <th>Squarespace</th>
+                <th>Framer</th>
+                <th>Custom stack</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Hours, address, phone</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
+              <tr><td>Page copy / FAQ</td><td>Molly’s</td><td>Molly’s (pages)</td><td>Molly’s (CMS)</td></tr>
+              <tr><td>Swap photos</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
+              <tr><td>New seasonal story page</td><td>Molly’s (template)</td><td>Developer recommended</td><td>Molly’s if modeled; else developer</td></tr>
+              <tr><td>Layout, type, colors, motion</td><td>Mostly Molly’s (risky)</td><td>Developer recommended</td><td>Developer (git)</td></tr>
+              <tr><td>New section types</td><td>Limited</td><td>Developer recommended</td><td>Developer (git)</td></tr>
+              <tr><td>Sweeping page restructure / new modules</td><td>Site break risk</td><td>Developer recommended</td><td>Developer (git)</td></tr>
+              <tr><td>Changes via AI agent</td><td>Not supported</td><td>Yes</td><td>Yes (git)</td></tr>
+              <tr><td>Menu / prices / checkout</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td></tr>
+            </tbody>
+          </table>
+        </div>
         <div class="edit-list">
           <div class="edit-item">
             <h3>Hours, address, phone</h3>
