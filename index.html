@@ -228,8 +228,12 @@
     gap: 10px;
     align-items: center;
   }
+  .bar-row.pricing {
+    grid-template-columns: 110px 1fr 72px;
+  }
   @media (max-width: 560px) {
     .bar-row { grid-template-columns: 84px 1fr 48px; }
+    .bar-row.pricing { grid-template-columns: 84px 1fr 64px; }
   }
   .bar-label { font-size: 13px; font-weight: 600; color: var(--text); }
   .track {
@@ -237,6 +241,7 @@
     background: var(--bg-deep);
     border-radius: 99px;
     overflow: hidden;
+    position: relative;
   }
   .fill {
     height: 100%;
@@ -247,6 +252,35 @@
   .fill.custom { background: var(--custom); }
   .fill.framer { background: var(--framer); }
   .fill.squarespace { background: var(--squarespace); }
+  .fill-range {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    box-sizing: border-box;
+    border: 1.5px dashed var(--custom);
+    border-left: none;
+    border-radius: 0 99px 99px 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 3px,
+      rgba(45, 212, 191, 0.22) 3px,
+      rgba(45, 212, 191, 0.22) 6px
+    );
+    transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1), width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .band-light .fill-range {
+    border-color: var(--custom);
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 3px,
+      rgba(15, 118, 110, 0.18) 3px,
+      rgba(15, 118, 110, 0.18) 6px
+    );
+  }
   .pct {
     font-size: 13px; font-weight: 700; text-align: right;
     font-variant-numeric: tabular-nums; color: var(--muted);
@@ -488,7 +522,7 @@
         <div class="pricing-notes">
           <p><strong>Squarespace Core</strong> — $23/mo billed annually (custom code, business site).</p>
           <p><strong>Framer Pro + 1 editor</strong> — $30/mo site + $20/mo editor seat = $50/mo billed annually.</p>
-          <p><strong>Custom stack</strong> — Vercel Pro ~$20/mo + GitHub Team (private) ~$4/seat/mo + Sanity Free ($0 at this scale) ≈ $24/mo. Usage overages extra if traffic spikes.</p>
+          <p><strong>Custom stack</strong> — Typically ≈ $24/mo (Vercel Pro + GitHub Team + Sanity Free). Dotted range up to ~$50/mo covers optional custom additions for enhanced workflows. Usage overages extra if traffic spikes.</p>
         </div>
       </div>
     </div>
@@ -694,13 +728,31 @@ function barsHTML(scores) {
 }
 
 function pricingBarsHTML(prices) {
-  const max = Math.max(prices.custom, prices.framer, prices.squarespace);
+  const max = Math.max(
+    prices.customHigh || prices.custom,
+    prices.framer,
+    prices.squarespace
+  );
   return ["custom", "framer", "squarespace"].map((key) => {
     const label = key === "squarespace" ? "Squarespace" : key[0].toUpperCase() + key.slice(1);
+    if (key === "custom" && prices.customHigh) {
+      const baseW = Math.round((prices.custom / max) * 100);
+      const highW = Math.round((prices.customHigh / max) * 100);
+      const rangeW = highW - baseW;
+      return `
+      <div class="bar-row pricing">
+        <div class="bar-label">${label}</div>
+        <div class="track">
+          <div class="fill ${key}" data-width="${baseW}"></div>
+          <div class="fill-range" data-left="${baseW}" data-width="${rangeW}" title="Custom additions for enhanced workflows"></div>
+        </div>
+        <div class="pct">$${prices.custom}–${prices.customHigh}</div>
+      </div>`;
+    }
     const dollars = prices[key];
     const width = Math.round((dollars / max) * 100);
     return `
-      <div class="bar-row">
+      <div class="bar-row pricing">
         <div class="bar-label">${label}</div>
         <div class="track"><div class="fill ${key}" data-width="${width}"></div></div>
         <div class="pct">$${dollars}</div>
@@ -713,6 +765,10 @@ function animateBars(root = document) {
     root.querySelectorAll(".fill[data-width]").forEach((el) => {
       el.style.width = el.getAttribute("data-width") + "%";
     });
+    root.querySelectorAll(".fill-range[data-width]").forEach((el) => {
+      el.style.left = el.getAttribute("data-left") + "%";
+      el.style.width = el.getAttribute("data-width") + "%";
+    });
   });
 }
 
@@ -722,6 +778,7 @@ const sq = avg("squarespace");
 
 const PRICING = {
   custom: 24,
+  customHigh: 50,
   framer: 50,
   squarespace: 23,
 };
