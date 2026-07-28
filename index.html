@@ -197,6 +197,26 @@
     font-size: 15px; font-weight: 700; margin-bottom: 4px;
   }
 
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   .section > h2 {
     font-family: var(--display);
     font-size: 26px;
@@ -800,7 +820,51 @@ document.getElementById("factors").innerHTML = CRITERIA.map((c) => `
   </div>
 `).join("");
 
-animateBars();
+function setupScrollReveal() {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const targets = document.querySelectorAll(
+    ".recommend, .stat, .card, .edit-table-wrap, .edit-item"
+  );
+
+  document.querySelectorAll(".stats, .grid-2, .choose-grid, .edit-list").forEach((group) => {
+    [...group.children].forEach((child, i) => {
+      child.style.setProperty("--reveal-delay", `${i * 70}ms`);
+    });
+  });
+
+  // Stagger hero cards that sit as siblings (overall + pricing)
+  const heroCards = document.querySelectorAll(".band-dark .wrap > .card");
+  heroCards.forEach((card, i) => {
+    card.style.setProperty("--reveal-delay", `${(i + 1) * 80}ms`);
+  });
+
+  if (reduced) {
+    targets.forEach((el) => {
+      el.classList.add("reveal", "is-in");
+      animateBars(el);
+    });
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        animateBars(entry.target);
+        io.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  targets.forEach((el) => {
+    el.classList.add("reveal");
+    io.observe(el);
+  });
+}
+
+setupScrollReveal();
 </script>
 </body>
 </html>
