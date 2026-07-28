@@ -4,58 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Molly’s Market — Platform Choice</title>
-<meta name="description" content="Odd+Even decision dashboard: Squarespace vs Framer vs Custom stack for Molly’s Market.">
+<meta name="description" content="Platform choice for Molly’s Market — Squarespace vs Framer vs custom stack. Prepared by Odd+Even.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f6f3ef;
-    --bg-deep: #efe8e0;
-    --card: #ffffff;
-    --text: #1c1917;
-    --muted: #78716c;
-    --line: rgba(28, 25, 23, 0.10);
+    --bg: #000000;
+    --bg-deep: #1a1a1a;
+    --card: #111111;
+    --text: #f5f5f4;
+    --muted: #a8a29e;
+    --line: rgba(255, 255, 255, 0.10);
     --persimmon: #e07058;
-    --persimmon-deep: #c45a44;
-    --custom: #0f766e;
-    --framer: #d97706;
-    --squarespace: #b91c1c;
-    --custom-soft: rgba(15, 118, 110, 0.12);
-    --framer-soft: rgba(217, 119, 6, 0.12);
-    --sq-soft: rgba(185, 28, 28, 0.10);
-    --shadow: 0 1px 0 rgba(28,25,23,0.04);
+    --persimmon-deep: #f09078;
+    --custom: #2dd4bf;
+    --framer: #fbbf24;
+    --squarespace: #f87171;
+    --custom-soft: rgba(45, 212, 191, 0.16);
+    --framer-soft: rgba(251, 191, 36, 0.16);
+    --sq-soft: rgba(248, 113, 113, 0.16);
+    --shadow: none;
     --radius: 16px;
-    --font: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
-    --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font: "Poppins", system-ui, -apple-system, sans-serif;
+    --display: "Poppins", system-ui, -apple-system, sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     font-family: var(--font);
-    background:
-      radial-gradient(1200px 500px at 10% -10%, rgba(224,112,88,0.16), transparent 55%),
-      radial-gradient(900px 400px at 100% 0%, rgba(15,118,110,0.08), transparent 50%),
-      var(--bg);
+    background: var(--bg);
     color: var(--text);
     line-height: 1.45;
     -webkit-font-smoothing: antialiased;
-    padding: 32px 20px 80px;
+    padding: 0;
   }
 
   .wrap { max-width: 1080px; margin: 0 auto; }
+
+  .band {
+    padding: 72px 20px 80px;
+  }
+  .band-dark {
+    background: #000000;
+    color: var(--text);
+  }
+  .band-light {
+    background: #ffffff;
+    color: #1c1917;
+    --text: #1c1917;
+    --muted: #78716c;
+    --line: rgba(28, 25, 23, 0.10);
+    --card: #ffffff;
+    --bg-deep: #e8e8e8;
+    --custom: #0f766e;
+    --framer: #d97706;
+    --squarespace: #b91c1c;
+    --custom-soft: rgba(15, 118, 110, 0.12);
+    --framer-soft: rgba(217, 119, 6, 0.14);
+    --sq-soft: rgba(185, 28, 28, 0.12);
+    --persimmon-deep: #c45a44;
+  }
+  .band-light .legend span,
+  .band-light .sub,
+  .band-light .section > .sub,
+  .band-light .note,
+  .band-light .meta,
+  .band-light .brand,
+  .band-light footer {
+    color: var(--muted);
+  }
+  .band-light .bar-label { color: var(--text); }
+  .band-light .pct { color: var(--muted); }
+  .band-light .card,
+  .band-light .stat {
+    background: var(--card);
+    border-color: var(--line);
+  }
+  .band-light .fill.custom { background: var(--custom); }
+  .band-light .fill.framer { background: var(--framer); }
+  .band-light .fill.squarespace { background: var(--squarespace); }
+  .band-light .dot.custom { background: var(--custom); }
+  .band-light .dot.framer { background: var(--framer); }
+  .band-light .dot.squarespace { background: var(--squarespace); }
+  .band-light .stat.custom .value { color: var(--custom); }
+  .band-light .stat.framer .value { color: var(--framer); }
+  .band-light .stat.squarespace .value { color: var(--squarespace); }
+  .band-light .pill.good { background: var(--custom-soft); color: var(--custom); }
+  .band-light .pill.warn { background: var(--framer-soft); color: var(--framer); }
+  .band-light .pill.bad { background: var(--sq-soft); color: var(--squarespace); }
+  .band-light footer a { color: var(--persimmon-deep); }
+
+  .section { margin-top: 0; }
+  .band .section + .section { margin-top: 36px; }
 
   .topbar {
     display: flex; align-items: center; justify-content: space-between;
     gap: 16px; margin-bottom: 28px; flex-wrap: wrap;
   }
   .brand {
-    display: flex; align-items: center; gap: 10px;
+    display: flex; align-items: center; gap: 12px;
     font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
     text-transform: uppercase; color: var(--muted);
   }
-  .brand-mark {
-    width: 28px; height: 28px; border-radius: 8px;
-    background: var(--persimmon); color: white;
-    display: grid; place-items: center; font-weight: 700; font-size: 12px;
+  .brand-logo {
+    height: 36px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+  .band-light .brand-logo {
+    filter: none;
   }
   .meta { font-size: 13px; color: var(--muted); }
 
@@ -75,7 +135,8 @@
   }
 
   .recommend {
-    background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
+    background: #1a1a1a;
+    border: 1px solid var(--line);
     color: #fafaf9;
     border-radius: var(--radius);
     padding: 22px 24px;
@@ -95,6 +156,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-bottom: 16px;
+    align-items: stretch;
   }
   @media (max-width: 720px) {
     .stats { grid-template-columns: 1fr; }
@@ -106,6 +168,7 @@
     border-radius: var(--radius);
     padding: 18px 18px 16px;
     box-shadow: var(--shadow);
+    height: 100%;
   }
   .stat .label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
   .stat .value { font-size: 36px; font-weight: 700; letter-spacing: -0.03em; margin-top: 4px; font-variant-numeric: tabular-nums; }
@@ -120,18 +183,20 @@
     border-radius: var(--radius);
     padding: 20px;
     box-shadow: var(--shadow);
-  }
-  .card + .card { margin-top: 12px; }
-  .card h2 {
-    font-size: 15px; font-weight: 700; margin-bottom: 4px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   .card .sub {
     font-size: 13px; color: var(--muted); margin-bottom: 16px;
   }
-
-  .section {
-    margin-top: 36px;
+  .card .bars {
+    margin-top: auto;
   }
+  .card h2 {
+    font-size: 15px; font-weight: 700; margin-bottom: 4px;
+  }
+
   .section > h2 {
     font-family: var(--display);
     font-size: 26px;
@@ -159,12 +224,12 @@
   .bars { display: grid; gap: 10px; }
   .bar-row {
     display: grid;
-    grid-template-columns: 110px 1fr 44px;
+    grid-template-columns: 110px 1fr 52px;
     gap: 10px;
     align-items: center;
   }
   @media (max-width: 560px) {
-    .bar-row { grid-template-columns: 84px 1fr 40px; }
+    .bar-row { grid-template-columns: 84px 1fr 48px; }
   }
   .bar-label { font-size: 13px; font-weight: 600; color: var(--text); }
   .track {
@@ -191,6 +256,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+    align-items: stretch;
   }
   @media (max-width: 800px) {
     .grid-2 { grid-template-columns: 1fr; }
@@ -199,7 +265,8 @@
   .factor h3 {
     font-size: 15px; font-weight: 700; margin-bottom: 4px;
   }
-  .factor .sub { margin-bottom: 14px; }
+  .factor .sub { margin-bottom: 14px; flex: 0 0 auto; }
+  .factor .bars { margin-top: auto; }
 
   table {
     width: 100%;
@@ -230,229 +297,287 @@
     letter-spacing: 0.02em;
   }
   .pill.good { background: var(--custom-soft); color: var(--custom); }
-  .pill.warn { background: var(--framer-soft); color: #b45309; }
+  .pill.warn { background: var(--framer-soft); color: var(--framer); }
   .pill.bad { background: var(--sq-soft); color: var(--squarespace); }
 
   .choose-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
+    align-items: stretch;
   }
   @media (max-width: 800px) {
     .choose-grid { grid-template-columns: 1fr; }
+  }
+  .choose {
+    height: 100%;
   }
   .choose h3 {
     display: flex; align-items: center; justify-content: space-between;
     gap: 8px; font-size: 16px; margin-bottom: 12px;
   }
-  .choose dl { display: grid; gap: 10px; }
+  .choose .tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 14px;
+  }
+  .choose dl { display: grid; gap: 10px; margin-top: auto; }
   .choose dt { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
   .choose dd { font-size: 13px; color: var(--text); margin: 0; }
 
-  .note {
-    margin-top: 28px;
+  .pill.neutral {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+  }
+  .band-light .pill.neutral {
+    background: rgba(28, 25, 23, 0.06);
+    color: var(--muted);
+  }
+
+  .pricing-notes {
+    margin-top: 16px;
+    display: grid;
+    gap: 8px;
+  }
+  .pricing-notes p {
     font-size: 12px;
     color: var(--muted);
-    max-width: 80ch;
+    line-height: 1.45;
+  }
+  .pricing-notes strong {
+    color: var(--text);
+    font-weight: 600;
   }
 
   footer {
-    margin-top: 40px;
-    padding-top: 18px;
+    margin-top: 36px;
+    padding-top: 16px;
     border-top: 1px solid var(--line);
-    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    font-size: 12px; color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: 72ch;
   }
-  footer a { color: var(--persimmon-deep); text-decoration: none; font-weight: 600; }
-  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="brand-mark">O+</div>
-        Odd+Even · Client dashboard
-      </div>
-      <div class="meta">Molly’s Market · Bethesda · 2026</div>
-    </div>
-
-    <header>
-      <h1>Which platform for the site?</h1>
-      <p class="lede">
-        Squarespace, Framer, or a custom stack. All three can look good —
-        the differences are design limits, who can edit what, and how stable
-        the brand stays after launch. Ordering stays on ChowNow + Toast either way.
-      </p>
-    </header>
-
-    <div class="recommend">
-      <div class="eyebrow">Suggested direction</div>
-      <strong>Custom stack</strong>
-      <p>
-        Best if you want the Odd+Even look locked in and a content editor built
-        for Molly’s (hours, FAQ, catering, seasonal pages) without staff being
-        able to break the design. Framer is the main alternative if launch speed
-        matters more than a tailored editor. Squarespace is the weakest brand fit.
-      </p>
-    </div>
-
-    <div class="stats" id="stats"></div>
-
-    <div class="card">
-      <h2>Overall fit</h2>
-      <p class="sub">Average across all decision factors (0–100%).</p>
-      <div class="legend">
-        <span><i class="dot custom"></i> Custom</span>
-        <span><i class="dot framer"></i> Framer</span>
-        <span><i class="dot squarespace"></i> Squarespace</span>
-      </div>
-      <div class="bars" id="overall"></div>
-    </div>
-
-    <section class="section">
-      <h2>Compare by decision factor</h2>
-      <p class="sub">Each chart is a 0–100% fit score. Higher is better for that factor.</p>
-      <div class="legend">
-        <span><i class="dot custom"></i> Custom</span>
-        <span><i class="dot framer"></i> Framer</span>
-        <span><i class="dot squarespace"></i> Squarespace</span>
-      </div>
-      <div class="grid-2" id="factors"></div>
-    </section>
-
-    <section class="section">
-      <h2>Design limitations</h2>
-      <p class="sub">Higher = fewer limits matching the Odd+Even brand system (type, color, storefront mark, motion).</p>
-      <div class="card">
-        <h2>Design freedom</h2>
-        <p class="sub">Squarespace fights custom brand systems. Framer is near full control. Custom has no platform design ceiling.</p>
-        <div class="bars" data-chart='{"custom":100,"framer":95,"squarespace":35}'></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Edit experience vs design stability</h2>
-      <p class="sub">
-        Custom stack uses a CMS shaped around Molly’s fields. The team updates content;
-        layout, type, and brand rules stay as designed.
-      </p>
-      <div class="grid-2">
-        <div class="card">
-          <h2>Editor can be customized</h2>
-          <p class="sub">Fixed builder UX vs fields labeled for hours, FAQ, catering, seasonal notes.</p>
-          <div class="bars" data-chart='{"custom":95,"framer":45,"squarespace":40}'></div>
+  <div class="band band-dark">
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <img class="brand-logo" src="oe-logo.png" alt="Odd+Even" width="194" height="150">
+          Prepared by Odd+Even
         </div>
-        <div class="card">
-          <h2>Design stays stable when editing</h2>
-          <p class="sub">How hard it is for day-to-day edits to drift the live site off-brand.</p>
-          <div class="bars" data-chart='{"custom":95,"framer":55,"squarespace":40}'></div>
-        </div>
+        <div class="meta">For Molly’s Market · Bethesda · 2026</div>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>Who edits what</h2>
-      <p class="sub">After launch: Molly’s team vs builder. Menu and checkout stay in ChowNow / Toast on all options.</p>
-      <div class="card" style="padding: 8px 12px 4px;">
-        <table>
-          <thead>
-            <tr>
-              <th>Change</th>
-              <th>Squarespace</th>
-              <th>Framer</th>
-              <th>Custom stack</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Hours, address, phone</td><td>Client</td><td>Client</td><td>Client (CMS)</td></tr>
-            <tr><td>Page copy / FAQ</td><td>Client</td><td>Client (pages)</td><td>Client (CMS)</td></tr>
-            <tr><td>Swap photos</td><td>Client</td><td>Client</td><td>Client (CMS)</td></tr>
-            <tr><td>Coming-soon / newsletter</td><td>Client</td><td>Client</td><td>Client (CMS)</td></tr>
-            <tr><td>New seasonal story page</td><td>Client (template)</td><td>Often builder</td><td>Client if modeled; else builder</td></tr>
-            <tr><td>Layout, type, colors, motion</td><td>Mostly client (risky)</td><td>Builder</td><td>Builder (locked)</td></tr>
-            <tr><td>New section types</td><td>Limited</td><td>Builder</td><td>Builder</td></tr>
-            <tr><td>ChowNow Order button</td><td>Builder once</td><td>Builder once</td><td>Builder once</td></tr>
-            <tr><td>Menu / prices / checkout</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td></tr>
-          </tbody>
-        </table>
+      <header>
+        <h1>Which platform for Molly’s website?</h1>
+        <p class="lede">
+          A recommendation for Molly’s Market from Odd+Even (design). Compare
+          Squarespace, Framer, and a custom stack — design limits, who can edit
+          what, and how stable Molly’s brand stays after launch. Online ordering
+          stays on ChowNow + Toast either way.
+        </p>
+      </header>
+
+      <div class="recommend">
+        <div class="eyebrow">Odd+Even suggestion</div>
+        <strong>Custom stack</strong>
+        <p>
+          Best if Molly’s wants its brand look locked in and a content editor built
+          for the market (hours, FAQ, catering, seasonal pages) without the team
+          being able to break the design. Framer is the main alternative when a
+          design-tool CMS is preferred over a tailored editor. Squarespace is the
+          simplest path if Molly’s prioritizes easy in-house edits over a fully
+          custom brand system.
+        </p>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>Decision snapshot</h2>
-      <p class="sub">Side-by-side on the four choices that usually decide this.</p>
+      <div class="stats" id="stats"></div>
+
       <div class="card">
+        <h2>Overall fit</h2>
+        <p class="sub">Average across all decision factors (0–100%).</p>
         <div class="legend">
           <span><i class="dot custom"></i> Custom</span>
           <span><i class="dot framer"></i> Framer</span>
           <span><i class="dot squarespace"></i> Squarespace</span>
         </div>
-        <div id="snapshot"></div>
+        <div class="bars" id="overall"></div>
       </div>
-    </section>
 
-    <section class="section">
-      <h2>When to choose each</h2>
-      <div class="choose-grid">
-        <div class="card choose">
-          <h3>Squarespace <span class="pill bad">Weak fit</span></h3>
-          <dl>
-            <dt>Choose if</dt>
-            <dd>Lowest cost/complexity matters more than brand fidelity.</dd>
-            <dt>Avoid if</dt>
-            <dd>You want the Odd+Even system to feel intentional, not templated.</dd>
-          </dl>
+      <div class="card" style="margin-top: 12px;">
+        <h2>Platform pricing (monthly)</h2>
+        <p class="sub">Typical ongoing platform cost for Molly’s marketing site. Annual billing where available. Excludes one-time design/build fees and domain renewals.</p>
+        <div class="legend">
+          <span><i class="dot custom"></i> Custom</span>
+          <span><i class="dot framer"></i> Framer</span>
+          <span><i class="dot squarespace"></i> Squarespace</span>
         </div>
-        <div class="card choose">
-          <h3>Framer <span class="pill warn">Alt</span></h3>
-          <dl>
-            <dt>Choose if</dt>
-            <dd>You want a beautiful site quickly and are fine with a lighter CMS.</dd>
-            <dt>Avoid if</dt>
-            <dd>You need a Molly’s-specific editor and hard design lock.</dd>
-          </dl>
-        </div>
-        <div class="card choose">
-          <h3>Custom stack <span class="pill good">Suggested</span></h3>
-          <dl>
-            <dt>Choose if</dt>
-            <dd>Brand consistency and a tailored, safe edit experience matter more than the fastest launch.</dd>
-            <dt>Tradeoff</dt>
-            <dd>More build time up front; steadier site after open.</dd>
-          </dl>
+        <div class="bars" id="pricing"></div>
+        <div class="pricing-notes">
+          <p><strong>Squarespace Core</strong> — $23/mo billed annually (custom code, business site).</p>
+          <p><strong>Framer Pro + 1 editor</strong> — $30/mo site + $20/mo editor seat = $50/mo billed annually.</p>
+          <p><strong>Custom stack</strong> — Vercel Pro ~$20/mo + GitHub Team (private) ~$4/seat/mo + Sanity Free ($0 at this scale) ≈ $24/mo. Usage overages extra if traffic spikes.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <p class="note">
-      Ordering model (all options): Toast menu → ChowNow ordering → Toast kitchen.
-      Site = brand + Order CTA. Scores are Odd+Even judgment for client comparison, not vendor benchmarks.
-    </p>
+  <div class="band band-light">
+    <div class="wrap">
+      <section class="section">
+        <h2>Compare by decision factor</h2>
+        <p class="sub">Each chart is a 0–100% fit score. Higher is better for that factor.</p>
+        <div class="legend">
+          <span><i class="dot custom"></i> Custom</span>
+          <span><i class="dot framer"></i> Framer</span>
+          <span><i class="dot squarespace"></i> Squarespace</span>
+        </div>
+        <div class="grid-2" id="factors"></div>
+      </section>
 
-    <footer>
-      <div>Prepared by Odd+Even for Molly’s Market</div>
-      <div><a href="https://github.com/odd-even/mollys-market-platform" target="_blank" rel="noopener">View on GitHub</a></div>
-    </footer>
+      <section class="section">
+        <h2>Edit experience vs design stability</h2>
+        <p class="sub">
+          Custom stack uses a CMS shaped around Molly’s content. Molly’s team updates
+          copy and photos; layout and brand rules stay as designed.
+          The tradeoff: big structural changes and new modules need a developer
+          with git access — not limited to Odd+Even.
+        </p>
+        <div class="grid-2">
+          <div class="card">
+            <h2>Editor can be customized</h2>
+            <p class="sub">Fixed builder UX vs fields labeled for Molly’s hours, FAQ, catering, seasonal notes.</p>
+            <div class="bars" data-chart='{"custom":95,"framer":45,"squarespace":40}'></div>
+          </div>
+          <div class="card">
+            <h2>Design stays stable when editing</h2>
+            <p class="sub">How hard it is for day-to-day edits to drift Molly’s live site off-brand.</p>
+            <div class="bars" data-chart='{"custom":95,"framer":55,"squarespace":40}'></div>
+          </div>
+          <div class="card">
+            <h2>Sweeping edits &amp; new modules</h2>
+            <p class="sub">Restructure pages, add sections, or invent new modules without a developer. This is where Squarespace and Framer win. On custom, anyone with git access can ship those changes.</p>
+            <div class="bars" data-chart='{"custom":25,"framer":90,"squarespace":95}'></div>
+          </div>
+          <div class="card">
+            <h2>Safe day-to-day content</h2>
+            <p class="sub">Hours, copy, photos, FAQ — Molly’s can do these on all three; custom keeps layout locked while they do.</p>
+            <div class="bars" data-chart='{"custom":90,"framer":65,"squarespace":95}'></div>
+          </div>
+          <div class="card">
+            <h2>AI agent changes</h2>
+            <p class="sub">Set up so an AI agent can ship site changes. Custom (git) and Framer both support this. Squarespace does not.</p>
+            <div class="bars" data-chart='{"custom":95,"framer":90,"squarespace":5}'></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="band band-dark">
+    <div class="wrap">
+      <section class="section">
+        <h2>Who edits what</h2>
+        <p class="sub">After launch: Molly’s team vs a developer (git access on custom). Menu and checkout stay in ChowNow / Toast on all options.</p>
+        <div class="card" style="padding: 8px 12px 4px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Change</th>
+                <th>Squarespace</th>
+                <th>Framer</th>
+                <th>Custom stack</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Hours, address, phone</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
+              <tr><td>Page copy / FAQ</td><td>Molly’s</td><td>Molly’s (pages)</td><td>Molly’s (CMS)</td></tr>
+              <tr><td>Swap photos</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
+              <tr><td>Coming-soon / newsletter</td><td>Molly’s</td><td>Molly’s</td><td>Molly’s (CMS)</td></tr>
+              <tr><td>New seasonal story page</td><td>Molly’s (template)</td><td>Developer recommended</td><td>Molly’s if modeled; else developer</td></tr>
+              <tr><td>Layout, type, colors, motion</td><td>Mostly Molly’s (risky)</td><td>Developer recommended</td><td>Developer (git)</td></tr>
+              <tr><td>New section types</td><td>Limited</td><td>Developer recommended</td><td>Developer (git)</td></tr>
+              <tr><td>Sweeping page restructure / new modules</td><td>Molly’s</td><td>Molly’s (Framer)</td><td>Developer (git)</td></tr>
+              <tr><td>Changes via AI agent</td><td>Not supported</td><td>Yes</td><td>Yes (git)</td></tr>
+              <tr><td>Menu / prices / checkout</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td><td>ChowNow / Toast</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>When to choose each</h2>
+        <div class="choose-grid">
+          <div class="card choose">
+            <h3>Squarespace <span class="pill warn">Simple</span></h3>
+            <div class="tags">
+              <span class="pill neutral">Easy day-to-day edits</span>
+              <span class="pill neutral">Sweeping changes</span>
+              <span class="pill neutral">Fast setup</span>
+              <span class="pill neutral">No AI agents</span>
+            </div>
+            <dl>
+              <dt>Choose if</dt>
+              <dd>Molly’s wants the easiest day-to-day editing and a lower-complexity setup.</dd>
+              <dt>Tradeoff</dt>
+              <dd>Less control over a fully custom brand look compared with Framer or a custom stack.</dd>
+            </dl>
+          </div>
+          <div class="card choose">
+            <h3>Framer <span class="pill warn">Alt</span></h3>
+            <div class="tags">
+              <span class="pill neutral">Strong design control</span>
+              <span class="pill neutral">Sweeping changes</span>
+              <span class="pill neutral">AI agents</span>
+              <span class="pill neutral">Lighter CMS</span>
+            </div>
+            <dl>
+              <dt>Choose if</dt>
+              <dd>Molly’s wants a strong design-tool workflow and is fine with a lighter CMS.</dd>
+              <dt>Tradeoff</dt>
+              <dd>Editor is less tailored than a custom CMS; full canvas edits can drift off-brand.</dd>
+            </dl>
+          </div>
+          <div class="card choose">
+            <h3>Custom stack <span class="pill good">Suggested</span></h3>
+            <div class="tags">
+              <span class="pill neutral">Brand lock</span>
+              <span class="pill neutral">Tailored CMS</span>
+              <span class="pill neutral">AI agents</span>
+              <span class="pill neutral">Design stays stable</span>
+            </div>
+            <dl>
+              <dt>Choose if</dt>
+              <dd>Molly’s brand consistency and a tailored, safe edit experience matter most.</dd>
+              <dt>Tradeoff</dt>
+              <dd>New pages/modules need a developer with git access; Molly’s site stays steadier after open.</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Ordering model (all options): Toast menu → ChowNow ordering → Toast kitchen.
+        Site = Molly’s brand + Order CTA. Scores are Odd+Even’s recommendation for
+        Molly’s Market — judgment for comparison, not vendor benchmarks.
+      </footer>
+    </div>
   </div>
 
 <script>
 const CRITERIA = [
-  { name: "Brand match", detail: "How well the site can match the Odd+Even system", custom: 100, framer: 90, squarespace: 30 },
+  { name: "Brand match", detail: "How well the site can match Molly’s Market brand", custom: 100, framer: 90, squarespace: 30 },
   { name: "Design freedom", detail: "Fewer platform limits on layout, type, and motion", custom: 100, framer: 95, squarespace: 35 },
-  { name: "Client day-to-day edits", detail: "Hours, copy, photos, FAQ without a developer", custom: 90, framer: 65, squarespace: 95 },
-  { name: "Custom edit experience", detail: "Editor can be tailored to Molly’s content", custom: 95, framer: 45, squarespace: 40 },
+  { name: "Molly’s day-to-day edits", detail: "Hours, copy, photos, FAQ without a developer", custom: 90, framer: 65, squarespace: 95 },
+  { name: "Sweeping edits & new modules", detail: "Restructure pages, add sections/modules without a developer", custom: 25, framer: 90, squarespace: 95 },
+  { name: "AI agent changes", detail: "Can set up so an AI agent makes site changes", custom: 95, framer: 90, squarespace: 5 },
+  { name: "Custom edit experience", detail: "Editor tailored to Molly’s content (not a generic form)", custom: 95, framer: 45, squarespace: 40 },
   { name: "Design stays stable", detail: "Content changes without breaking the designed layout", custom: 95, framer: 55, squarespace: 40 },
-  { name: "ChowNow Order button", detail: "Add direct ordering from the marketing site", custom: 90, framer: 90, squarespace: 90 },
-  { name: "Speed to launch", detail: "Time to a live coming-soon / first site", custom: 55, framer: 85, squarespace: 95 },
-  { name: "Own the site long-term", detail: "Less lock-in if vendors change", custom: 100, framer: 45, squarespace: 35 },
-];
-
-const SNAPSHOT = [
-  { name: "Brand + design lock", custom: 100, framer: 90, squarespace: 30 },
-  { name: "Tailored CMS", custom: 95, framer: 45, squarespace: 40 },
-  { name: "Client edits (safe)", custom: 90, framer: 65, squarespace: 95 },
-  { name: "Launch speed", custom: 55, framer: 85, squarespace: 95 },
+  { name: "ChowNow Order button", detail: "Add direct ordering from Molly’s marketing site", custom: 90, framer: 90, squarespace: 90 },
+  { name: "Speed to launch", detail: "Time to a live coming-soon / first site (same designer)", custom: 80, framer: 80, squarespace: 90 },
+  { name: "Own the site long-term", detail: "Molly’s keeps the site if vendors change", custom: 100, framer: 45, squarespace: 35 },
 ];
 
 function avg(key) {
@@ -471,6 +596,21 @@ function barsHTML(scores) {
   }).join("");
 }
 
+function pricingBarsHTML(prices) {
+  const max = Math.max(prices.custom, prices.framer, prices.squarespace);
+  return ["custom", "framer", "squarespace"].map((key) => {
+    const label = key === "squarespace" ? "Squarespace" : key[0].toUpperCase() + key.slice(1);
+    const dollars = prices[key];
+    const width = Math.round((dollars / max) * 100);
+    return `
+      <div class="bar-row">
+        <div class="bar-label">${label}</div>
+        <div class="track"><div class="fill ${key}" data-width="${width}"></div></div>
+        <div class="pct">$${dollars}</div>
+      </div>`;
+  }).join("");
+}
+
 function animateBars(root = document) {
   requestAnimationFrame(() => {
     root.querySelectorAll(".fill[data-width]").forEach((el) => {
@@ -483,6 +623,12 @@ const cu = avg("custom");
 const fr = avg("framer");
 const sq = avg("squarespace");
 
+const PRICING = {
+  custom: 24,
+  framer: 50,
+  squarespace: 23,
+};
+
 document.getElementById("stats").innerHTML = `
   <div class="stat custom"><div class="label">Custom stack</div><div class="value">${cu}%</div><div class="hint">Average fit</div></div>
   <div class="stat framer"><div class="label">Framer</div><div class="value">${fr}%</div><div class="hint">Average fit</div></div>
@@ -490,6 +636,7 @@ document.getElementById("stats").innerHTML = `
 `;
 
 document.getElementById("overall").innerHTML = barsHTML({ custom: cu, framer: fr, squarespace: sq });
+document.getElementById("pricing").innerHTML = pricingBarsHTML(PRICING);
 
 document.getElementById("factors").innerHTML = CRITERIA.map((c) => `
   <div class="card factor">
@@ -502,13 +649,6 @@ document.getElementById("factors").innerHTML = CRITERIA.map((c) => `
 document.querySelectorAll("[data-chart]").forEach((el) => {
   el.innerHTML = barsHTML(JSON.parse(el.getAttribute("data-chart")));
 });
-
-document.getElementById("snapshot").innerHTML = SNAPSHOT.map((s) => `
-  <div style="margin-bottom:18px">
-    <div style="font-size:13px;font-weight:700;margin-bottom:8px">${s.name}</div>
-    <div class="bars">${barsHTML(s)}</div>
-  </div>
-`).join("");
 
 animateBars();
 </script>
